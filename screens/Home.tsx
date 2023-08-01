@@ -33,6 +33,7 @@ export default function Home() {
       {isSnacks && (
         <FlatList
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+          showsVerticalScrollIndicator={false}
           data={snacks}
           renderItem={({ item }) => <FoodView item={item} />}
           keyExtractor={(snack: ISnack) => snack.name}
@@ -42,6 +43,7 @@ export default function Home() {
       {isPizza && (
         <FlatList
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+          showsVerticalScrollIndicator={false}
           data={pizza}
           renderItem={({ item }) => <FoodView item={item} />}
           keyExtractor={(pizza: ISnack) => pizza.name}

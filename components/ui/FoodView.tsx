@@ -12,7 +12,7 @@ export default function FoodView({
   
   return (
     <View style={styles.container}>
-      <Image source={item.image} style={{height: 100, width: 150, borderRadius: 7}} />
+      <Image source={item.image} style={{height: 125, width: 150, borderRadius: 7}} />
       <View style={styles.titleStyle}>
         <Text style={{ fontSize: 20, fontWeight: "600" }}>{item.name}</Text>
         <Text>{item.description}</Text>
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
     padding: 4,
+    alignItems: "center",
 
 
   },
