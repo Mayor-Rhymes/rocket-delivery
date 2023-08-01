@@ -14,18 +14,39 @@ enum Category {
 }
 
 export default function Home() {
-  const [category, setCategory] = useState<Category>(Category.pizza);
+  const [isSnacks, setIsSnacks] = useState(true);
+  const [isPizza, setIsPizza] = useState(false);
+  const [isDesserts, setIsDesserts] = useState(false);
+  const [isDrinks, setIsDrinks] = useState(false);
+  const [isSavories, setIsSavories] = useState(false);
 
   return (
     <View style={styles.container}>
-      <TabView />
-
-      <FlatList
-        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-        data={snacks}
-        renderItem={({ item }) => <FoodView snack={item} />}
-        keyExtractor={(snack: ISnack) => snack.name}
+      <TabView
+        setIsSnacks={setIsSnacks}
+        setIsPizza={setIsPizza}
+        setIsDesserts={setIsDesserts}
+        setIsDrinks={setIsDrinks}
+        setIsSavories={setIsSavories}
       />
+
+      {isSnacks && (
+        <FlatList
+          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+          data={snacks}
+          renderItem={({ item }) => <FoodView item={item} />}
+          keyExtractor={(snack: ISnack) => snack.name}
+        />
+      )}
+
+      {isPizza && (
+        <FlatList
+          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+          data={pizza}
+          renderItem={({ item }) => <FoodView item={item} />}
+          keyExtractor={(pizza: ISnack) => pizza.name}
+        />
+      )}
 
       <StatusBar hidden />
     </View>

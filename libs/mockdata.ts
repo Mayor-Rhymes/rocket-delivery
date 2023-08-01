@@ -35,7 +35,7 @@ export const snacks: ISnack[] = [
 export const pizza: ISnack[] = [
     
     {
-        image: require("../assets/images/shawarma.jpg"),
+        image: require("../assets/images/pepperoni-pizza.jpg"),
         name: "Peperoni pizza",
         description: "Beautifully baked in a wonderful oven with peperoni and enough cheese",
         price: "5,500 NGN"
@@ -43,10 +43,18 @@ export const pizza: ISnack[] = [
     },
     
     {
-        image: require("../assets/images/doughnuts.jpg"),
+        image: require("../assets/images/suya-pizza.jpg"),
         name: "Suya pizza",
-        description: "Freshly baked doughnuts made with love",
+        description: "Nigerian styled pizza with the meat that fills a hole and enough pepper to trigger a smile",
         price: "5,000 NGN"
+
+    },
+
+    {
+        image: require("../assets/images/neopolitan-pizza.jpg"),
+        name: "Neopolitan pizza",
+        description: "The original pizza of the italians. Simple and filling",
+        price: "7,000 NGN"
 
     },
    
