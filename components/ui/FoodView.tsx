@@ -1,22 +1,22 @@
 import { Image, View, Text, StyleSheet } from "react-native";
-import { ISnack } from "../../libs/mockdata";
+import { IFoodItem } from "../../libs/datatypes/itemsTypes";
 
 interface FoodProps {
-  snack: ISnack
+  item: IFoodItem
 }
 
 export default function FoodView({
-  snack
+  item
 }: FoodProps) {
 
   
   return (
     <View style={styles.container}>
-      <Image source={snack.image} style={{height: 100, width: 150, borderRadius: 7}} />
+      <Image source={item.image} style={{height: 125, width: 150, borderRadius: 7}} />
       <View style={styles.titleStyle}>
-        <Text style={{ fontSize: 20, fontWeight: "600" }}>{snack.name}</Text>
-        <Text>{snack.description}</Text>
-        <Text style={{ color: "coral" }}>{snack.price}</Text>
+        <Text style={{ fontSize: 20, fontWeight: "600" }}>{item.name}</Text>
+        <Text>{item.description}</Text>
+        <Text style={{ color: "coral" }}>{item.price}</Text>
       </View>
     </View>
   );
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
     padding: 4,
+    alignItems: "center",
 
 
   },

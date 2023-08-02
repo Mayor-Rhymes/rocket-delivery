@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
 
   textInput: {
     width: "75%",
-    borderWidth: 1,
-    borderColor: "coral",
+    height: 70,
+    backgroundColor: "#EBF1FF",
     borderRadius: 7,
     padding: 10,
     fontSize: 17,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     flexDirection: "row",
     justifyContent: "center",
-    height: 40,
+    height: 60,
     alignItems: "center",
   },
 
