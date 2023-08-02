@@ -1,12 +1,20 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function Profile() {
+export default function Profile({navigation}) {
+
+  const handleNavigation = (screen: string) => {
+
+      navigation.navigate(screen);
+       
+  }
+
+
   return (
     <View style={styles.container}>
       <View style={styles.userHeading}>
         <Text style={styles.userHeadingText}>Hi, username</Text>
-        <Ionicons name="settings" color="white" size={25} />
+        <Ionicons name="settings" color="white" size={25} onPress={() => handleNavigation("Settings")}/>
       </View>
 
       <View
