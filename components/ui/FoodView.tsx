@@ -1,8 +1,8 @@
 import { Image, View, Text, StyleSheet } from "react-native";
-import { ISnack } from "../../libs/mockdata";
+import { IFoodItem } from "../../libs/datatypes/itemsTypes";
 
 interface FoodProps {
-  item: ISnack
+  item: IFoodItem
 }
 
 export default function FoodView({

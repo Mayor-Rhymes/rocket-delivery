@@ -2,10 +2,10 @@ import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Tab from "../components/ui/Tab";
 import TabView from "../components/ui/TabView";
-import { snacks } from "../libs/mockdata";
-import { pizza } from "../libs/mockdata";
+import { snacks } from "../libs/mockdata/snack";
+import { pizza } from "../libs/mockdata/pizza";
 import FoodView from "../components/ui/FoodView";
-import { ISnack } from "../libs/mockdata";
+import { IFoodItem } from "../libs/datatypes/itemsTypes";
 import { useState } from "react";
 
 enum Category {
@@ -36,7 +36,7 @@ export default function Home() {
           showsVerticalScrollIndicator={false}
           data={snacks}
           renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(snack: ISnack) => snack.name}
+          keyExtractor={(snack: IFoodItem) => snack.name}
         />
       )}
 
@@ -46,7 +46,7 @@ export default function Home() {
           showsVerticalScrollIndicator={false}
           data={pizza}
           renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(pizza: ISnack) => pizza.name}
+          keyExtractor={(pizza: IFoodItem) => pizza.name}
         />
       )}
 
