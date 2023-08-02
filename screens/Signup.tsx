@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   textInput: {
     width: "75%",
     height: 70,
-    backgroundColor: "lightgray",
+    backgroundColor: "#EBF1FF",
     borderRadius: 7,
     padding: 10,
     fontSize: 17,

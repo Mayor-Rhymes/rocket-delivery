@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import Tab from "../components/ui/Tab";
 import TabView from "../components/ui/TabView";
 import { snacks } from "../libs/mockdata/snack";
 import { pizza } from "../libs/mockdata/pizza";
@@ -10,83 +9,48 @@ import { IFoodItem } from "../libs/datatypes/itemsTypes";
 import { useState } from "react";
 import { drinks } from "../libs/mockdata/drink";
 import { savories } from "../libs/mockdata/savories";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Menu from "./Menu";
+import Profile from "./Profile";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { findFocusedRoute } from "@react-navigation/native";
 
-enum Category {
-  snack,
-  pizza,
-}
+const Tab = createBottomTabNavigator();
 
 export default function Home() {
-  const [isSnacks, setIsSnacks] = useState(true);
-  const [isPizza, setIsPizza] = useState(false);
-  const [isDesserts, setIsDesserts] = useState(false);
-  const [isDrinks, setIsDrinks] = useState(false);
-  const [isSavories, setIsSavories] = useState(false);
 
+  const screenOptions = (route, focused) => {
+
+      let iconName
+
+      switch(route.name) {
+
+        case "Menu":
+            iconName = "fast-food";
+            
+            
+            break;
+
+        case "Profile":
+            iconName = "person";
+            break;
+
+        default:
+            break;
+      }
+
+      return <Ionicons name={iconName} size={24} color={focused ? "coral" : "grey"}/>;
+  }
   return (
-    <View style={styles.container}>
-      <TabView
-        setIsSnacks={setIsSnacks}
-        setIsPizza={setIsPizza}
-        setIsDesserts={setIsDesserts}
-        setIsDrinks={setIsDrinks}
-        setIsSavories={setIsSavories}
-      />
-
-      {isSnacks && (
-        <FlatList
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-          showsVerticalScrollIndicator={false}
-          data={snacks}
-          renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(snack: IFoodItem) => snack.name}
-        />
-      )}
-
-      {isPizza && (
-        <FlatList
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-          showsVerticalScrollIndicator={false}
-          data={pizza}
-          renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(pizza: IFoodItem) => pizza.name}
-        />
-      )}
-
-
-      {isDesserts && (
-        <FlatList
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-          showsVerticalScrollIndicator={false}
-          data={desserts}
-          renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(dessert: IFoodItem) => dessert.name}
-        />
-      )}
-
-
-      {isDrinks && (
-        <FlatList
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-          showsVerticalScrollIndicator={false}
-          data={drinks}
-          renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(drink: IFoodItem) => drink.name}
-        />
-      )}
-
-      {isSavories && (
-        <FlatList
-          ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-          showsVerticalScrollIndicator={false}
-          data={savories}
-          renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(savory: IFoodItem) => savory.name}
-        />
-      )}
-
-      <StatusBar hidden />
-    </View>
+    <Tab.Navigator screenOptions={({route}) => ({
+        tabBarIcon: ({focused}) => screenOptions(route, focused),
+        tabBarActiveBackgroundColor: "#EBF1FF",
+        tabBarActiveTintColor: "black",
+        headerShown: false
+    })}>
+      <Tab.Screen name="Menu" component={Menu} />
+      <Tab.Screen name="Profile" component={Profile} />
+    </Tab.Navigator>
   );
 }
 
