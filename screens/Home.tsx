@@ -2,11 +2,15 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Menu from "./Menu";
 import Profile from "./Profile";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import type { ParamListBase, RouteProp } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
 export default function Home() {
-  const screenOptions = (route, focused) => {
+  const screenOptions = (
+    route: RouteProp<ParamListBase, string>,
+    focused: boolean
+  ) => {
     let iconName;
 
     switch (route.name) {
@@ -32,6 +36,7 @@ export default function Home() {
         tabBarIcon: ({ focused }) => screenOptions(route, focused),
         tabBarActiveBackgroundColor: "#EBF1FF",
         tabBarActiveTintColor: "black",
+        tabBarLabelStyle: {fontSize: 14},
         headerShown: false,
       })}
     >
