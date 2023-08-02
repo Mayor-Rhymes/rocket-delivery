@@ -1,5 +1,7 @@
 import { IFoodItem } from "../datatypes/itemsTypes";
 
+// const AssetSource = "../../assets/images/";
+
 const AssetSource = "../../assets/images/";
 
 export const pizza: IFoodItem[] = [

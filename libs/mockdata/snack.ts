@@ -1,5 +1,6 @@
 import { IFoodItem } from "../datatypes/itemsTypes";
 
+// import { AssetSource } from "./pathAbstraction";
 const AssetSource = "../../assets/images/";
 
 export const snacks: IFoodItem[] = [
