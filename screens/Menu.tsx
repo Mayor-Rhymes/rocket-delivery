@@ -10,13 +10,24 @@ import { savories } from "../libs/mockdata/savories";
 import { snacks } from "../libs/mockdata/snack";
 import { useState } from "react";
 
-export default function Menu() {
+
+
+
+
+
+export default function Menu({navigation}) {
   const [isSnacks, setIsSnacks] = useState(true);
   const [isPizza, setIsPizza] = useState(false);
   const [isDesserts, setIsDesserts] = useState(false);
   const [isDrinks, setIsDrinks] = useState(false);
   const [isSavories, setIsSavories] = useState(false);
 
+  const handleFoodInfoScreen = (item: any) => {
+    navigation.navigate("FoodInfo", {
+      item: item
+    });
+  }; 
+  
   return (
     <View style={styles.container}>
       <TabView
@@ -32,8 +43,8 @@ export default function Menu() {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           showsVerticalScrollIndicator={false}
           data={snacks}
-          renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(snack: IFoodItem) => snack.name}
+          renderItem={({ item }) => <FoodView item={item} handleFoodInfoScreen={() => handleFoodInfoScreen(item)}/>}
+          keyExtractor={(snack: IFoodItem) => snack.id}
         />
       )}
 
@@ -42,8 +53,8 @@ export default function Menu() {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           showsVerticalScrollIndicator={false}
           data={pizza}
-          renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(pizza: IFoodItem) => pizza.name}
+          renderItem={({ item }) => <FoodView item={item} handleFoodInfoScreen={() => handleFoodInfoScreen(item)}/>}
+          keyExtractor={(pizza: IFoodItem) => pizza.id}
         />
       )}
 
@@ -52,8 +63,8 @@ export default function Menu() {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           showsVerticalScrollIndicator={false}
           data={desserts}
-          renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(dessert: IFoodItem) => dessert.name}
+          renderItem={({ item }) => <FoodView item={item} handleFoodInfoScreen={() => handleFoodInfoScreen(item)}/>}
+          keyExtractor={(dessert: IFoodItem) => dessert.id}
         />
       )}
 
@@ -62,8 +73,8 @@ export default function Menu() {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           showsVerticalScrollIndicator={false}
           data={drinks}
-          renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(drink: IFoodItem) => drink.name}
+          renderItem={({ item }) => <FoodView item={item} handleFoodInfoScreen={() => handleFoodInfoScreen(item)}/>}
+          keyExtractor={(drink: IFoodItem) => drink.id}
         />
       )}
 
@@ -72,8 +83,8 @@ export default function Menu() {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           showsVerticalScrollIndicator={false}
           data={savories}
-          renderItem={({ item }) => <FoodView item={item} />}
-          keyExtractor={(savory: IFoodItem) => savory.name}
+          renderItem={({ item }) => <FoodView item={item} handleFoodInfoScreen={() => handleFoodInfoScreen(item)}/>}
+          keyExtractor={(savory: IFoodItem) => savory.id}
         />
       )}
 
