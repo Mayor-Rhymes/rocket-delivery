@@ -1,83 +1,91 @@
-import {createSlice} from '@reduxjs/toolkit';
-import { IFoodItem } from '../../../libs/datatypes/itemsTypes';
-
+import { createSlice } from "@reduxjs/toolkit";
+import { IFoodItem } from "../../../libs/datatypes/itemsTypes";
 
 export interface ICartItem extends IFoodItem {
-
-   itemNumber: number,
-   total: number,
+  itemNumber: number;
+  total: number;
 }
 
 interface initStateStructure {
-
-   items: IFoodItem[];
+  items: IFoodItem[];
+  totalPrice: number;
 }
 
 const initialState = {
-
-    items: [],
-}
-
+  items: [],
+  totalPrice: 0,
+};
 
 export const cartSlice = createSlice({
+  name: "cart",
+  initialState,
+  reducers: {
+    addItem: (state, action) => {
+      const previousItems = state.items;
 
-    name: "cart",
-    initialState,
-    reducers: {
+      const itemAdded = previousItems.find(
+        (item) => item.id === action.payload.id
+      );
 
-        addItem: (state, action) => {
+      if (itemAdded) {
+        const purgedItems = previousItems.filter(
+          (item) => item.id !== itemAdded.id
+        );
+        const updateItemAdded = {
+          ...itemAdded,
+          itemNumber: itemAdded.itemNumber + 1,
+          total: (itemAdded.itemNumber + 1) * itemAdded.price,
+        };
 
-             const previousItems = state.items;
+        state.items = [...purgedItems, updateItemAdded];
+        const price: number[] = state.items.map((item) => item.total);
+        state.totalPrice = price.reduce((a, b) => a + b, 0);
+      } else {
+        const newItem = action.payload;
+        state.items = [
+          ...state.items,
+          { ...newItem, itemNumber: 1, total: newItem.price },
+        ];
+        const price: number[] = state.items.map((item) => item.total);
+        state.totalPrice = price.reduce((a, b) => a + b, 0);
+      }
+    },
 
-             const itemAdded = previousItems.find(item => item.id === action.payload.id);
+    removeItem: (state, action) => {
+      const previousItems = state.items;
 
-             if(itemAdded) {
-            
-                const purgedItems = previousItems.filter(item => item.id !== itemAdded.id);
-                const updateItemAdded = {...itemAdded, itemNumber: itemAdded.itemNumber + 1, total: (itemAdded.itemNumber + 1) * itemAdded.price}
-                state.items = [...purgedItems, updateItemAdded];
-                
-             } else {
+      const itemRemoved = previousItems.find(
+        (item) => item.id === action.payload.id
+      );
 
-                const newItem = action.payload;
-                state.items = [...state.items, {...newItem, itemNumber: 1, total: newItem.price}];
-             }
-        },
+      if (itemRemoved) {
+        if (itemRemoved.itemNumber == 1) {
+          const purgedItems = previousItems.filter(
+            (item) => item.id !== itemRemoved.id
+          );
+          state.items = purgedItems;
+          const price: number[] = state.items.map((item) => item.total);
+          state.totalPrice = price.reduce((a, b) => a + b, 0);
+        } else {
+          const purgedItems = previousItems.filter(
+            (item) => item.id !== itemRemoved.id
+          );
 
-        removeItem: (state, action) => {
+          const updateItemRemoved = {
+            ...itemRemoved,
+            itemNumber: itemRemoved.itemNumber - 1,
+            total: (itemRemoved.itemNumber - 1) * itemRemoved.price,
+          };
 
-
-            const previousItems = state.items;
-
-            const itemRemoved = previousItems.find(item => item.id === action.payload.id);
-
-            if(itemRemoved) {
-
-
-                if(itemRemoved.itemNumber == 1) {
-
-                    const purgedItems = previousItems.filter(item => item.id !== itemRemoved.id);
-                    state.items = purgedItems;
-
-                } else {
-
-                    const purgedItems = previousItems.filter(item => item.id !== itemRemoved.id);
-
-                    const updateItemRemoved = {...itemRemoved, itemNumber: itemRemoved.itemNumber - 1, total: (itemRemoved.itemNumber - 1) * itemRemoved.price}
-
-
-                    state.items = [...purgedItems, updateItemRemoved];
-                    
-                }
-           
-               
-               
-            } 
+          state.items = [...purgedItems, updateItemRemoved];
+          const price: number[] = state.items.map((item) => item.total);
+          state.totalPrice = price.reduce((a, b) => a + b, 0);
         }
-    }
+      }
+    },
+  },
+});
 
-})
-
-export const {addItem, removeItem} = cartSlice.actions;
+export const { addItem, removeItem } = cartSlice.actions;
 
 export default cartSlice.reducer;

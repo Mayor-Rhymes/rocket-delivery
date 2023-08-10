@@ -17,14 +17,14 @@ export default function FoodItem({ item }: FoodItemProps) {
     <View style={styles.container}>
       <Image
         source={item.image}
-        style={{ height: 125, width: 150, borderRadius: 7 }}
+        style={{ height: 120, width: 120, borderRadius: 7 }}
       />
       <View style={styles.titleStyle}>
         <Text style={{ fontSize: 20, fontWeight: "600" }}>{item.name}</Text>
 
         <Text style={{ color: "coral" }}>{item.total}NGN</Text>
 
-        <View style={{ flexDirection: 'row', gap: 20, }}>
+        <View style={{ flexDirection: 'row', paddingVertical: 10, justifyContent: 'space-evenly', backgroundColor: "#F7E7F7", borderRadius: 5}}>
             <Button>
                 <Ionicons name="add" size={20} color="grey" onPress={() => dispatch(addItem(item))}/>
             </Button>
@@ -42,14 +42,14 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flexDirection: "row",
-    gap: 10,
+    gap: 20,
     padding: 4,
     alignItems: "center",
   },
 
   titleStyle: {
     flexDirection: "column",
-    gap: 3,
+    gap: 10,
     justifyContent: "center",
     flexShrink: 1,
   },
