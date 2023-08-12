@@ -13,7 +13,7 @@ export default function Basket({ navigation }) {
 
   if (items.length === 0) {
     return (
-      <View style={styles.container}>
+      <View style={styles.containerEmpty}>
         <Image source={emptyCart} style={{ height: 300, width: 300 }} />
         <Text style={{ fontSize: 20, fontWeight: "bold" }}>
           Quite empty here!
@@ -40,18 +40,20 @@ export default function Basket({ navigation }) {
   }
 
   return (
-    <View style={{ paddingBottom: 60 }}>
+    <View style={styles.container}>
       <FlatList
-        ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
+        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
         showsVerticalScrollIndicator={false}
-        style={{ padding: 10, paddingBottom: 100 }}
+        style={{ padding: 10, paddingBottom: 20 }}
         data={items}
         renderItem={({ item }) => <FoodItem item={item} />}
         keyExtractor={(item: ICartItem) => item.id}
       />
 
       <Button style={styles.button}>
-        <Text style={styles.buttonText}>Proceed to Checkout for {totalPrice}</Text>
+        <Text style={styles.buttonText}>
+          Proceed to Checkout for {totalPrice}
+        </Text>
       </Button>
     </View>
   );
@@ -60,10 +62,17 @@ export default function Basket({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
+    justifyContent: "space-between",
   },
+
+  containerEmpty: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 20,
+  },
+
+
   button: {
     width: "75%",
     backgroundColor: "coral",
@@ -73,9 +82,6 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: "center",
     alignSelf: "center",
-    position: "absolute",
-    top: 670,
-    bottom: 300,
   },
 
   buttonText: {

@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, Image} from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import Button from "../components/ui/Button";
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { addItem } from "../app/features/cart/cart";
 
 export default function FoodInfo({ route, navigation }) {
@@ -9,12 +9,16 @@ export default function FoodInfo({ route, navigation }) {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={item.image}
-        style={{ width: "100%", height: 300, borderRadius: 10 }}
-      />
-      <Text style={{ fontSize: 30, fontWeight: "bold" }}>{item.name}</Text>
-      <Text style={{ fontSize: 20 }}>{item.description}</Text>
+      <View>
+        <Image
+          source={item.image}
+          style={{ width: "100%", height: 300, borderRadius: 10 }}
+        />
+        <Text style={{ fontSize: 30, fontWeight: "bold" }}>{item.name}</Text>
+        <Text style={{ fontSize: 20 }}>{item.description}</Text>
+      </View>
+
+
       <Button style={styles.button} onPress={() => dispatch(addItem(item))}>
         <Text style={styles.buttonText}>ADD TO BASKET FOR {item.price}</Text>
       </Button>
@@ -27,6 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     gap: 10,
+    justifyContent: "space-between",
   },
   button: {
     width: "100%",
@@ -36,8 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 40,
     alignItems: "center",
-    marginTop: 200,
-    
+    alignSelf: "flex-end"
   },
 
   buttonText: {
