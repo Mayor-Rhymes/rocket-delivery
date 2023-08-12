@@ -10,8 +10,13 @@ interface TabViewProps {
     setIsDesserts: Dispatch<SetStateAction<boolean>>;
     setIsDrinks: Dispatch<SetStateAction<boolean>>;
     setIsSavories: Dispatch<SetStateAction<boolean>>;
+    isSnacks: boolean;
+    isPizza: boolean;
+    isDesserts: boolean;
+    isDrinks: boolean;
+    isSavories: boolean;
 }
-export default function TabView({setIsSnacks, setIsPizza, setIsDrinks, setIsDesserts, setIsSavories}: TabViewProps) {
+export default function TabView({setIsSnacks, setIsPizza, setIsDrinks, setIsDesserts, setIsSavories, isDesserts, isDrinks, isPizza, isSavories, isSnacks}: TabViewProps) {
 
 
 
@@ -62,19 +67,19 @@ export default function TabView({setIsSnacks, setIsPizza, setIsDrinks, setIsDess
   }
   return (
     <View style={{ flexDirection: "row", gap: 10, justifyContent: "center" }}>
-      <Tab style={styles.tabStyle} onPress={handleSnacksSelection}>
+      <Tab style={isSnacks ? styles.activeTabStyle : styles.tabStyle} onPress={handleSnacksSelection}>
         <Text style={styles.tabTextStyle}>Snacks</Text>
       </Tab>
-      <Tab style={styles.tabStyle} onPress={handlePizzaSelection}>
+      <Tab style={isPizza ? styles.activeTabStyle : styles.tabStyle} onPress={handlePizzaSelection}>
         <Text style={styles.tabTextStyle}>Pizza</Text>
       </Tab>
-      <Tab style={styles.tabStyle} onPress={handleDessertsSelection}>
+      <Tab style={isDesserts ? styles.activeTabStyle : styles.tabStyle} onPress={handleDessertsSelection}>
         <Text style={styles.tabTextStyle}>Desserts</Text>
       </Tab>
-      <Tab style={styles.tabStyle} onPress={handleDrinksSelection}>
+      <Tab style={isDrinks ? styles.activeTabStyle : styles.tabStyle} onPress={handleDrinksSelection}>
         <Text style={styles.tabTextStyle}>Drinks</Text>
       </Tab>
-      <Tab style={styles.tabStyle} onPress={handleSavoriesSelection}>
+      <Tab style={isSavories ? styles.activeTabStyle : styles.tabStyle} onPress={handleSavoriesSelection}>
         <Text style={styles.tabTextStyle}>Savories</Text>
       </Tab>
     </View>
@@ -91,8 +96,22 @@ const styles = StyleSheet.create({
         borderRadius: 7,
         padding: 10,
       },
+    activeTabStyle: {
+        backgroundColor: 'coral',
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 7,
+        padding: 10,
+
+    },
+
+
       tabTextStyle: {
         fontWeight: "500",
       },
+      activeTabTextStyle: {
+         color: 'red',
+         fontWeight: "500",
+      }
 
 })
