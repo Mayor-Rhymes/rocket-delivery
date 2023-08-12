@@ -14,9 +14,9 @@ The pictures used in this app are sourced from [unsplash](https://unsplash.com) 
 
 
 ##### Technologies Used
-[React Native](https://reactnative.dev/)
-[Redux toolkit](https://redux-toolkit.js.org/)
-[Expo](https://expo.dev)
+- [React Native](https://reactnative.dev/)
+- [Redux toolkit](https://redux-toolkit.js.org/)
+- [Expo](https://expo.dev)
 
 
 
