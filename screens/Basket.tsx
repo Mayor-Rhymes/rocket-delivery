@@ -1,15 +1,17 @@
-import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import { View, Text, StyleSheet, FlatList, Image, Modal } from "react-native";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { IFoodItem } from "../libs/datatypes/itemsTypes";
 import FoodItem from "../components/ui/FoodItem";
 import Button from "../components/ui/Button";
 import { ICartItem } from "../app/features/cart/cart";
-// import emptyCart from '../assets/images/empty-cart.png';
 
 const emptyCart = require("../assets/images/empty-cart.png");
 
 export default function Basket({ navigation }) {
   const { items, totalPrice } = useSelector((state) => state.cart);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   if (items.length === 0) {
     return (
@@ -50,11 +52,72 @@ export default function Basket({ navigation }) {
         keyExtractor={(item: ICartItem) => item.id}
       />
 
-      <Button style={styles.button}>
+      <Button style={styles.button} onPress={() => setModalVisible(true)}>
         <Text style={styles.buttonText}>
           Proceed to Checkout for {totalPrice}
         </Text>
       </Button>
+
+      <Modal
+        animationType="slide"
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "#FF7F50",
+            paddingHorizontal: 20,
+            gap: 20,
+            justifyContent: 'center',
+          }}
+        >
+          <Text style={{ fontSize: 20 }}>Delivery</Text>
+
+          <View
+            style={{
+              borderRadius: 10,
+              backgroundColor: "white",
+              height: 50,
+              justifyContent: "center",
+              paddingHorizontal: 10,
+            }}
+          >
+            <Text style={{ fontSize: 16 }}>The address is here</Text>
+          </View>
+
+          <Text style={{ fontSize: 20 }}>Payment type</Text>
+          <View
+            style={{
+              borderRadius: 10,
+              backgroundColor: "white",
+              height: 50,
+              justifyContent: "center",
+              paddingHorizontal: 10,
+            }}
+          >
+            <Text style={{ fontSize: 16 }}>Payment type is here</Text>
+          </View>
+
+          <View
+            style={{
+              flexDirection: "row",
+              height: 50,
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontSize: 16 }}>Order amount</Text>
+            <Text style={{ fontSize: 16 }}>{totalPrice} NGN</Text>
+          </View>
+
+          <Button style={[styles.button, {backgroundColor: 'white', width: '100%', height: 60}]} onPress={() => setModalVisible(true)}>
+            <Text style={[styles.buttonText, {color: 'black', fontSize: 20}]}>
+              Place your order
+            </Text>
+          </Button>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -71,7 +134,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 20,
   },
-
 
   button: {
     width: "75%",

@@ -19,7 +19,7 @@ export default function FoodInfo({ route, navigation }) {
       </View>
 
 
-      <Button style={styles.button} onPress={() => dispatch(addItem(item))}>
+      <Button style={styles.button} onPress={() => {dispatch(addItem(item)); navigation.navigate('Menu')}}>
         <Text style={styles.buttonText}>ADD TO BASKET FOR {item.price}</Text>
       </Button>
     </View>
