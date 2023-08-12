@@ -36,6 +36,11 @@ export default function Menu({navigation}) {
         setIsDesserts={setIsDesserts}
         setIsDrinks={setIsDrinks}
         setIsSavories={setIsSavories}
+        isSnacks={isSnacks}
+        isPizza={isPizza}
+        isDesserts={isDesserts}
+        isDrinks={isDrinks}
+        isSavories={isSavories}
       />
 
       {isSnacks && (
