@@ -24,13 +24,13 @@ export default function FoodItem({ item }: FoodItemProps) {
 
         <Text style={{ color: "coral" }}>{item.total}NGN</Text>
 
-        <View style={{ flexDirection: 'row', paddingVertical: 10, justifyContent: 'space-evenly', backgroundColor: "#F7E7F7", borderRadius: 5}}>
+        <View style={{ flexDirection: 'row', height: 30, alignItems: 'center', justifyContent: 'space-evenly', backgroundColor: '#F5E6F5', borderRadius: 5, width: '75%'}}>
             <Button>
-                <Ionicons name="add" size={20} color="grey" onPress={() => dispatch(addItem(item))}/>
+                <Ionicons name="add" size={24} color="grey" onPress={() => dispatch(addItem(item))}/>
             </Button>
-            <Text>{item.itemNumber}</Text>
+            <Text style={{fontSize: 15}}>{item.itemNumber}</Text>
             <Button>
-                <Ionicons name="remove" size={20} color="grey" onPress={() => dispatch(removeItem(item))}/>
+                <Ionicons name="remove" size={24} color="grey" onPress={() => dispatch(removeItem(item))}/>
             </Button>
         </View>
       </View>
