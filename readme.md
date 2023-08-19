@@ -17,6 +17,9 @@ The pictures used in this app are sourced from [unsplash](https://unsplash.com) 
 - [React Native](https://reactnative.dev/)
 - [Redux toolkit](https://redux-toolkit.js.org/)
 - [Expo](https://expo.dev)
+- [Reanimated][https://docs.swmansion.com/react-native-reanimated/]
+
+
 
 
 
