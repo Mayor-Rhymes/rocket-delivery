@@ -1,15 +1,16 @@
 import {Text, Pressable, PressableProps} from 'react-native';
+import type {PropsWithChildren} from 'react';
+import Animated, {useSharedValue, withSpring} from 'react-native-reanimated';
 
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-interface TabProps extends PressableProps {
-       
-}
+type props = PressableProps;
 
-export default function Tab({children, ...props}: TabProps) {
+export default function Tab({children, ...props}: props) {
     
     return (
-        <Pressable {...props}>
+        <AnimatedPressable {...props}>
             {children}
-        </Pressable>
+        </AnimatedPressable>
     )
 }

@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Animated } from "react-native";
 import Tab from "./Tab";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useRef } from "react";
+
 
 
 interface TabViewProps {
@@ -19,6 +20,18 @@ interface TabViewProps {
 export default function TabView({setIsSnacks, setIsPizza, setIsDrinks, setIsDesserts, setIsSavories, isDesserts, isDrinks, isPizza, isSavories, isSnacks}: TabViewProps) {
 
 
+  const transition = useRef(new Animated.Value(0)).current;
+  const colorChange = () => {
+      
+    Animated.timing(transition, {
+      toValue: 1,
+      delay: 2000,
+      duration: 2000,
+      useNativeDriver: true,
+    
+    }).start()
+     
+  }
 
   const handleSnacksSelection = () => {
 
@@ -67,7 +80,7 @@ export default function TabView({setIsSnacks, setIsPizza, setIsDrinks, setIsDess
   }
   return (
     <View style={{ flexDirection: "row", gap: 10, justifyContent: "center" }}>
-      <Tab style={isSnacks ? styles.activeTabStyle : styles.tabStyle} onPress={handleSnacksSelection}>
+      <Tab style={isSnacks ? styles.activeTabStyle : styles.tabStyle}  onPress={handleSnacksSelection}>
         <Text style={styles.tabTextStyle}>Snacks</Text>
       </Tab>
       <Tab style={isPizza ? styles.activeTabStyle : styles.tabStyle} onPress={handlePizzaSelection}>

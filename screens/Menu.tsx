@@ -9,6 +9,7 @@ import { pizza } from "../libs/mockdata/pizza";
 import { savories } from "../libs/mockdata/savories";
 import { snacks } from "../libs/mockdata/snack";
 import { useState } from "react";
+import Animated, {FadeIn} from 'react-native-reanimated'
 
 
 
@@ -29,7 +30,7 @@ export default function Menu({navigation}) {
   }; 
   
   return (
-    <View style={styles.container}>
+    <Animated.View entering={FadeIn} style={styles.container}>
       <TabView
         setIsSnacks={setIsSnacks}
         setIsPizza={setIsPizza}
@@ -94,7 +95,7 @@ export default function Menu({navigation}) {
       )}
 
       <StatusBar hidden />
-    </View>
+    </Animated.View>
   );
 }
 
