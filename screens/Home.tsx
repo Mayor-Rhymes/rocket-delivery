@@ -52,6 +52,7 @@ export default function Home() {
         tabBarActiveTintColor: "black",
         tabBarLabelStyle: { fontSize: 14 },
         headerShown: false,
+        
       })}
     >
       <Tab.Screen name="Menu" component={Menu} />
