@@ -4,6 +4,7 @@ import Profile from "./Profile";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import type { ParamListBase, RouteProp } from "@react-navigation/native";
 import { useSelector } from "react-redux";
+import Animated, {useSharedValue, withSpring, useAnimatedStyle} from 'react-native-reanimated';
 
 import Basket from "./Basket";
 
@@ -13,6 +14,12 @@ export default function Home() {
 
 
   const {items} = useSelector(state => state.cart);
+
+  // const colorChange = useSharedValue(0);
+
+
+  
+
   console.log(items);
   const screenOptions = (
     route: RouteProp<ParamListBase, string>,
@@ -40,6 +47,7 @@ export default function Home() {
 
     return (
       <Ionicons name={iconName} size={24} color={focused ? "coral" : "grey"} />
+      // <Ionicons name={iconName} size={24} style={{ color: "coral" }} />
     );
   };
 
@@ -52,6 +60,7 @@ export default function Home() {
         tabBarActiveTintColor: "black",
         tabBarLabelStyle: { fontSize: 14 },
         headerShown: false,
+        
         
       })}
     >
