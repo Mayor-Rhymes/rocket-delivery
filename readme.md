@@ -12,12 +12,15 @@ Also, I am using expo. it seems like it is the most popular toolchain for buildi
 
 The pictures used in this app are sourced from [unsplash](https://unsplash.com) and a few other places.
 
+Supabase will be used for the backend.
+
 
 ##### Technologies Used
 - [React Native](https://reactnative.dev/)
 - [Redux toolkit](https://redux-toolkit.js.org/)
 - [Expo](https://expo.dev)
 - [Reanimated](https://docs.swmansion.com/react-native-reanimated/)
+- [Supabase](https://supabase.com)
 
 
 
