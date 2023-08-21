@@ -1,3 +1,4 @@
+import "react-native-url-polyfill/auto";
 import { StatusBar } from "expo-status-bar";
 import { View, FlatList, StyleSheet } from "react-native";
 import FoodView from "../components/ui/FoodView";
@@ -8,26 +9,34 @@ import { drinks } from "../libs/mockdata/drink";
 import { pizza } from "../libs/mockdata/pizza";
 import { savories } from "../libs/mockdata/savories";
 import { snacks } from "../libs/mockdata/snack";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabaseApi, useGetAllFoodItemsQuery } from "../app/features/api/supabase-api";
+// import { useGetAllFoodItemsQuery } from "../app/features/api/supabase-api";
 
 
-
-
-
-
-
-export default function Menu({navigation}) {
+export default function Menu({ navigation }) {
+  
+  
+  
   const [isSnacks, setIsSnacks] = useState(true);
   const [isPizza, setIsPizza] = useState(false);
   const [isDesserts, setIsDesserts] = useState(false);
   const [isDrinks, setIsDrinks] = useState(false);
   const [isSavories, setIsSavories] = useState(false);
+  const [food, setFood] = useState<any[]>();
 
   const handleFoodInfoScreen = (item: any) => {
     navigation.navigate("FoodInfo", {
-      item: item
+      item: item,
     });
-  }; 
+  };
+
+
+  const {data, error, isLoading} = useGetAllFoodItemsQuery("hello");
+
+  
+
+  
   
   return (
     <View style={styles.container}>
@@ -49,7 +58,12 @@ export default function Menu({navigation}) {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           showsVerticalScrollIndicator={false}
           data={snacks}
-          renderItem={({ item }) => <FoodView item={item} handleFoodInfoScreen={() => handleFoodInfoScreen(item)}/>}
+          renderItem={({ item }) => (
+            <FoodView
+              item={item}
+              handleFoodInfoScreen={() => handleFoodInfoScreen(item)}
+            />
+          )}
           keyExtractor={(snack: IFoodItem) => snack.id}
         />
       )}
@@ -59,7 +73,12 @@ export default function Menu({navigation}) {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           showsVerticalScrollIndicator={false}
           data={pizza}
-          renderItem={({ item }) => <FoodView item={item} handleFoodInfoScreen={() => handleFoodInfoScreen(item)}/>}
+          renderItem={({ item }) => (
+            <FoodView
+              item={item}
+              handleFoodInfoScreen={() => handleFoodInfoScreen(item)}
+            />
+          )}
           keyExtractor={(pizza: IFoodItem) => pizza.id}
         />
       )}
@@ -69,7 +88,12 @@ export default function Menu({navigation}) {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           showsVerticalScrollIndicator={false}
           data={desserts}
-          renderItem={({ item }) => <FoodView item={item} handleFoodInfoScreen={() => handleFoodInfoScreen(item)}/>}
+          renderItem={({ item }) => (
+            <FoodView
+              item={item}
+              handleFoodInfoScreen={() => handleFoodInfoScreen(item)}
+            />
+          )}
           keyExtractor={(dessert: IFoodItem) => dessert.id}
         />
       )}
@@ -79,7 +103,12 @@ export default function Menu({navigation}) {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           showsVerticalScrollIndicator={false}
           data={drinks}
-          renderItem={({ item }) => <FoodView item={item} handleFoodInfoScreen={() => handleFoodInfoScreen(item)}/>}
+          renderItem={({ item }) => (
+            <FoodView
+              item={item}
+              handleFoodInfoScreen={() => handleFoodInfoScreen(item)}
+            />
+          )}
           keyExtractor={(drink: IFoodItem) => drink.id}
         />
       )}
@@ -89,10 +118,17 @@ export default function Menu({navigation}) {
           ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
           showsVerticalScrollIndicator={false}
           data={savories}
-          renderItem={({ item }) => <FoodView item={item} handleFoodInfoScreen={() => handleFoodInfoScreen(item)}/>}
+          renderItem={({ item }) => (
+            <FoodView
+              item={item}
+              handleFoodInfoScreen={() => handleFoodInfoScreen(item)}
+            />
+          )}
           keyExtractor={(savory: IFoodItem) => savory.id}
         />
       )}
+      
+
 
       <StatusBar hidden />
     </View>
